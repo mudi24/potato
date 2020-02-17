@@ -13,7 +13,7 @@ const instance = axios.create({
 })
 
 
-axios.interceptors.request.use(function (config) {
+instance.interceptors.request.use(function (config) {
   const xToken = localStorage.getItem('x-token')
   if (xToken) {
     config.headers['Authorization'] = `Bearer ${xToken}`
@@ -25,7 +25,7 @@ axios.interceptors.request.use(function (config) {
   return Promise.reject(error);
 });
 
-axios.interceptors.response.use(function (response) {
+instance.interceptors.response.use(function (response) {
   if (response.headers['x-token']) {
     localStorage.setItem('x-token', response.headers['x-token'])
   }
