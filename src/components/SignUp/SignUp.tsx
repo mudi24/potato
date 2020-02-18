@@ -1,6 +1,8 @@
 import React from "react";
 import { Input, Icon, Button } from "antd";
+import { Link } from "react-router-dom";
 import axios from "../../config/axios";
+import "./SignUp.scss";
 
 interface ISignUpState {
   account: string;
@@ -38,7 +40,8 @@ function SignUp() {
     }
   };
   return (
-    <div className="Component">
+    <div className="Component" id="SignUp">
+      <h1>番茄闹钟</h1>
       <Input
         placeholder="请输入你的用户名"
         prefix={<Icon type="user" style={{ color: "rgba(0,0,0,.25)" }} />}
@@ -56,7 +59,12 @@ function SignUp() {
         value={state.passwordConformation}
         onChange={onChangePasswordConfirmation}
       />
-      <Button onClick={submit}>注册</Button>
+      <Button className="loginButton" type="primary" onClick={submit}>
+        注册
+      </Button>
+      <p>
+        如果你有账号，请 <Link to="/login">登录</Link>
+      </p>
     </div>
   );
 }
