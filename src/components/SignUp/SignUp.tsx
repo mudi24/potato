@@ -10,20 +10,14 @@ interface ISignUpState {
   passwordConformation: string;
 }
 
-function SignUp() {
+function SignUp(props: any) {
   const [state, setState] = React.useState({
     account: "",
     password: "",
     passwordConformation: ""
   });
-  const onChangeAccount = (e: any) => {
-    setState({ ...state, account: e.target.value });
-  };
-  const onChangePasswordConfirmation = (e: any) => {
-    setState({ ...state, passwordConformation: e.target.value });
-  };
-  const onChangePassword = (e: any) => {
-    setState({ ...state, password: e.target.value });
+  const onChange = (key: keyof ISignUpState, value: string) => {
+    setState({ ...state, [key]: value });
   };
   const submit = async () => {
     const { account, password, passwordConformation } = state;
@@ -34,36 +28,36 @@ function SignUp() {
         password,
         password_confirmation: passwordConformation
       });
-      console.log("成功");
+      props.history.push("/");
     } catch (e) {
       throw new Error(e);
     }
   };
   return (
     <div className="Component" id="SignUp">
-      <h1>番茄闹钟</h1>
+      <h1>番茄闹钟注册</h1>
       <Input
         placeholder="请输入你的用户名"
         prefix={<Icon type="user" style={{ color: "rgba(0,0,0,.25)" }} />}
         allowClear
         value={state.account}
-        onChange={onChangeAccount}
+        onChange={e => onChange("account", e.target.value)}
       />
       <Input.Password
         value={state.password}
         placeholder="请输入密码"
-        onChange={onChangePassword}
+        onChange={e => onChange("password", e.target.value)}
       />
       <Input.Password
         placeholder="请确认密码"
         value={state.passwordConformation}
-        onChange={onChangePasswordConfirmation}
+        onChange={e => onChange("passwordConformation", e.target.value)}
       />
       <Button className="loginButton" type="primary" onClick={submit}>
         注册
       </Button>
       <p>
-        如果你有账号，请 <Link to="/login">登录</Link>
+        如果你有账号，请立即 <Link to="/login">登录</Link>
       </p>
     </div>
   );
