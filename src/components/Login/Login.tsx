@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import axios from "../../config/axios";
 import "./Login.scss";
 
-interface ISignUpState {
+interface ILoginState {
   account: string;
   password: string;
 }
@@ -14,7 +14,7 @@ function Login(props: any) {
     account: "",
     password: ""
   });
-  const onChange = (key: keyof ISignUpState, value: string) => {
+  const onChange = (key: keyof ILoginState, value: string) => {
     setState({ ...state, [key]: value });
   };
 

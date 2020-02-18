@@ -1,4 +1,5 @@
-import axios from 'axios'
+import axios from 'axios';
+import history from '../config/history'
 
 
 const appID = 'jsRqyboNdXtnuE2GHZKRuzPv'
@@ -31,6 +32,13 @@ instance.interceptors.response.use(function (response) {
   }
   return response;
 }, function (error) {
+  // 拦截器
+  console.log(error);
+  if (error.response.status === 401) {
+    console.log('重定向');
+    window.location.href = '/login'
+    // history.push('login')
+  }
   return Promise.reject(error);
 });
 
