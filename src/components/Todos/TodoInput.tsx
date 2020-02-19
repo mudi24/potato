@@ -17,7 +17,7 @@ class TodoInput extends React.Component<ITodoInputProps, ITodoInput> {
     };
   }
   onKeyUp = (e: any) => {
-    if (e.keyCode === 13) {
+    if (e.keyCode === 13 && this.state.description !== "") {
       this.addTodo();
     }
   };

@@ -38,6 +38,7 @@ class Todos extends React.Component<any, ITodosState> {
   updateTodo = async (id: number, params: any) => {
     try {
       const { todos } = this.state;
+
       const response = await axios.put(`todos/${id}`, params);
       const newTodos = todos.map(t => {
         if (id === t.id) {
@@ -51,6 +52,17 @@ class Todos extends React.Component<any, ITodosState> {
       throw new Error(e);
     }
   };
+  toEditing = (id: number) => {
+    const { todos } = this.state;
+    const newTodos = todos.map(t => {
+      if (id === t.id) {
+        return Object.assign({}, t, { editing: true });
+      } else {
+        return Object.assign({}, t, { editing: false });
+      }
+    });
+    this.setState({ todos: newTodos });
+  };
   public render() {
     return (
       <div className="Todos" id="Todos">
@@ -62,6 +74,7 @@ class Todos extends React.Component<any, ITodosState> {
                 key={todo.id}
                 {...todo}
                 update={this.updateTodo}
+                toEditing={this.toEditing}
               ></TodoItem>
             );
           })}
