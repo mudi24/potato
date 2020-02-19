@@ -1,0 +1,49 @@
+.TodoItem.editing {
+  background: red;
+}
+#TodoItem {
+  display: flex;
+  align-items: center;
+  // padding: 8px 0;
+  border-bottom: 1px solid #ddd;
+
+  &:hover {
+    background: #f9f9f9;
+  }
+  // classnames
+  &.editing {
+    background: #fff3d2;
+  }
+  &.completed {
+    .text {
+      text-decoration: line-through;
+      color: #a9a9a9;
+    }
+  }
+  // 结束
+  > .editing {
+    background: #fff3d2;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex: 1;
+    padding: 8px 8px;
+
+    > input {
+      border: 0;
+      padding: 0;
+      outline: none;
+      background: transparent;
+    }
+    > .icon-wrapper > .anticon {
+      margin-left: 4px;
+      color: #a9a9a9;
+      cursor: pointer;
+    }
+  }
+
+  > .text {
+    flex: 1;
+    padding: 8px 8px;
+  }
+}

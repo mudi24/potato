@@ -1,5 +1,6 @@
 import React from "react";
 import { Checkbox, Icon } from "antd";
+import "./TodoItem.scss";
 
 interface ITodoItem {
   id: number;
@@ -37,16 +38,20 @@ class TodoItem extends React.Component<ITodoItem, any> {
           onChange={e => this.setState({ editText: e.target.value })}
           onKeyUp={this.onKeyUp}
         />
-        <Icon type="enter"></Icon>
-        <Icon
-          type="delete"
-          theme="filled"
-          onClick={e => this.update({ deleted: true })}
-        ></Icon>
+        <div className="icon-wrapper">
+          <Icon type="enter"></Icon>
+          <Icon
+            type="delete"
+            theme="filled"
+            onClick={e => this.update({ deleted: true })}
+          ></Icon>
+        </div>
       </div>
     );
     const text = (
-      <span onDoubleClick={this.toEditing}>{this.state.editText}</span>
+      <span className="text" onDoubleClick={this.toEditing}>
+        {this.state.editText}
+      </span>
     );
     return (
       <div className="TodoItem" id="TodoItem">
