@@ -1,6 +1,7 @@
 .TodoItem.editing {
   background: red;
 }
+
 #TodoItem {
   display: flex;
   align-items: center;
@@ -10,18 +11,25 @@
   &:hover {
     background: #f9f9f9;
   }
+
+  &:first-child {
+    border-top: 1px solid #ddd;
+  }
+
   // classnames
   &.editing {
     background: #fff3d2;
   }
+
   &.completed {
     .text {
       text-decoration: line-through;
       color: #a9a9a9;
     }
   }
+
   // 结束
-  > .editing {
+  >.editing {
     background: #fff3d2;
     display: flex;
     align-items: center;
@@ -29,20 +37,21 @@
     flex: 1;
     padding: 8px 8px;
 
-    > input {
+    >input {
       border: 0;
       padding: 0;
       outline: none;
       background: transparent;
     }
-    > .icon-wrapper > .anticon {
+
+    >.icon-wrapper>.anticon {
       margin-left: 4px;
       color: #a9a9a9;
       cursor: pointer;
     }
   }
 
-  > .text {
+  >.text {
     flex: 1;
     padding: 8px 8px;
   }

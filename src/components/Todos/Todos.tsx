@@ -15,6 +15,15 @@ class Todos extends React.Component<any, ITodosState> {
       todos: []
     };
   }
+  get unDeletedTodos() {
+    return this.state.todos.filter(t => !t.deleted);
+  }
+  get unCompletedTodos() {
+    return this.unDeletedTodos.filter(t => !t.completed);
+  }
+  get completedTodos() {
+    return this.unDeletedTodos.filter(t => t.completed);
+  }
   getTodos = async () => {
     try {
       const response = await axios.get("todos");
@@ -67,7 +76,7 @@ class Todos extends React.Component<any, ITodosState> {
     return (
       <div className="Todos" id="Todos">
         <TodoInput addTodo={(params: any) => this.addTodo(params)}></TodoInput>
-        <main>
+        <div className="todoList">
           {this.state.todos.map(todo => {
             return (
               <TodoItem
@@ -78,7 +87,17 @@ class Todos extends React.Component<any, ITodosState> {
               ></TodoItem>
             );
           })}
-        </main>
+          {this.completedTodos.map(todo => {
+            return (
+              <TodoItem
+                key={todo.id}
+                {...todo}
+                update={this.updateTodo}
+                toEditing={this.toEditing}
+              ></TodoItem>
+            );
+          })}
+        </div>
       </div>
     );
   }
