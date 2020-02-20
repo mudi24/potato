@@ -1,4 +1,6 @@
 import React from "react";
+import { connect } from "react-redux";
+import { addTodo } from "../../redux/actions";
 import TodoInput from "./TodoInput";
 import TodoItem from "./TodoItem";
 import axios from "../../config/axios";
@@ -103,4 +105,13 @@ class Todos extends React.Component<any, ITodosState> {
   }
 }
 
-export default Todos;
+const mapStateToProps = (state: any, ownProps: any) => ({
+  todos: state.todos,
+  ...ownProps
+});
+
+const mapDispatchToProps = {
+  addTodo
+};
+
+export default connect(mapStateToProps)(Todos);
