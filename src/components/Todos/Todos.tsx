@@ -1,103 +1,48 @@
 import React from "react";
 import { connect } from "react-redux";
-import { addTodo } from "../../redux/actions";
+import { initTodos } from "../../redux/actions";
 import TodoInput from "./TodoInput";
 import TodoItem from "./TodoItem";
 import axios from "../../config/axios";
 import "./Todos.scss";
 
-interface ITodosState {
-  todos: any[];
-}
-
-class Todos extends React.Component<any, ITodosState> {
+class Todos extends React.Component<any> {
   constructor(props: any) {
     super(props);
-    this.state = {
-      todos: []
-    };
   }
   get unDeletedTodos() {
-    return this.state.todos.filter(t => !t.deleted);
+    return this.props.todos.filter((t: any) => !t.deleted);
   }
   get unCompletedTodos() {
-    return this.unDeletedTodos.filter(t => !t.completed);
+    return this.unDeletedTodos.filter((t: any) => !t.completed);
   }
   get completedTodos() {
-    return this.unDeletedTodos.filter(t => t.completed);
+    return this.unDeletedTodos.filter((t: any) => t.completed);
   }
   getTodos = async () => {
     try {
       const response = await axios.get("todos");
-      this.setState({ todos: response.data.resources });
+      const todos = response.data.resources.map((t: any) =>
+        Object.assign({}, t, { editing: false })
+      );
+      this.props.initTodos(todos);
     } catch (e) {
-      console.log(e);
+      throw new Error(e);
     }
   };
   componentDidMount() {
     this.getTodos();
   }
-  // addTodo = async (params: any) => {
-  //   const { todos } = this.state;
-  //   try {
-  //     const response = await axios.post("todos", params);
-  //     this.setState({ todos: [...todos, response.data.resource] });
-  //   } catch (e) {
-  //     throw new Error(e);
-  //   }
-  // };
-  updateTodo = async (id: number, params: any) => {
-    try {
-      const { todos } = this.state;
-
-      const response = await axios.put(`todos/${id}`, params);
-      const newTodos = todos.map(t => {
-        if (id === t.id) {
-          return response.data.resource;
-        } else {
-          return t;
-        }
-      });
-      this.setState({ todos: newTodos });
-    } catch (e) {
-      throw new Error(e);
-    }
-  };
-  toEditing = (id: number) => {
-    const { todos } = this.state;
-    const newTodos = todos.map(t => {
-      if (id === t.id) {
-        return Object.assign({}, t, { editing: true });
-      } else {
-        return Object.assign({}, t, { editing: false });
-      }
-    });
-    this.setState({ todos: newTodos });
-  };
   public render() {
     return (
       <div className="Todos" id="Todos">
         <TodoInput></TodoInput>
         <div className="todoList">
-          {this.state.todos.map(todo => {
-            return (
-              <TodoItem
-                key={todo.id}
-                {...todo}
-                update={this.updateTodo}
-                toEditing={this.toEditing}
-              ></TodoItem>
-            );
+          {this.unCompletedTodos.map((todo: any) => {
+            return <TodoItem key={todo.id} {...todo}></TodoItem>;
           })}
-          {this.completedTodos.map(todo => {
-            return (
-              <TodoItem
-                key={todo.id}
-                {...todo}
-                update={this.updateTodo}
-                toEditing={this.toEditing}
-              ></TodoItem>
-            );
+          {this.completedTodos.map((todo: any) => {
+            return <TodoItem key={todo.id} {...todo}></TodoItem>;
           })}
         </div>
       </div>
@@ -111,7 +56,7 @@ const mapStateToProps = (state: any, ownProps: any) => ({
 });
 
 const mapDispatchToProps = {
-  addTodo
+  initTodos
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Todos);
