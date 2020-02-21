@@ -16,12 +16,13 @@ class Tomatoes extends React.Component<any> {
   get unfinishedTomato() {
     return this.props.tomatoes.filter(
       (t: any) => !t.description && !t.ender_at
-    );
+    )[0];
   }
 
   getTomatoes = async () => {
     try {
-      const response = await axios.post("tomatoes");
+      const response = await axios.get("tomatoes");
+      this.props.initTomatoes(response.data.resources);
     } catch (e) {
       throw new Error(e);
     }
@@ -33,7 +34,6 @@ class Tomatoes extends React.Component<any> {
         duration: 1500000
       });
       this.props.addTomato(response.data.resource);
-      console.log(response.data);
     } catch (e) {
       throw new Error(e);
     }
