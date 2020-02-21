@@ -6,3 +6,4 @@ export const addTodo = (payload: any) => {
     payload
   }
 }
+

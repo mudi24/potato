@@ -1,12 +1,15 @@
 import React from "react";
+import { connect } from "react-redux";
 import { Input, Icon } from "antd";
+import axios from "../../config/axios";
+import { addTodo } from "../../redux/actions";
 
 interface ITodoInput {
   description: string;
 }
 
 interface ITodoInputProps {
-  addTodo: (params: any) => void;
+  addTodo: (payload: any) => any;
 }
 
 class TodoInput extends React.Component<ITodoInputProps, ITodoInput> {
@@ -15,19 +18,31 @@ class TodoInput extends React.Component<ITodoInputProps, ITodoInput> {
     this.state = {
       description: ""
     };
+    console.log(this.props);
   }
   onKeyUp = (e: any) => {
     if (e.keyCode === 13 && this.state.description !== "") {
-      this.addTodo();
+      this.postTodo();
     }
   };
-  addTodo = () => {
-    this.props.addTodo({ description: this.state.description });
+  postTodo = async () => {
+    try {
+      const response = await axios.post("todos", {
+        description: this.state.description
+      });
+      this.props.addTodo(response.data.resource);
+    } catch (error) {
+      throw new Error(error);
+    }
     this.setState({ description: "" });
   };
   public render() {
     const { description } = this.state;
-    const suffix = description ? <Icon type="enter"></Icon> : <span></span>;
+    const suffix = description ? (
+      <Icon type="enter" onClick={this.postTodo}></Icon>
+    ) : (
+      <span></span>
+    );
     return (
       <div className="TodoInput" id="TodoInput">
         <Input
@@ -43,4 +58,11 @@ class TodoInput extends React.Component<ITodoInputProps, ITodoInput> {
   }
 }
 
-export default TodoInput;
+const mapStateToProps = (state: any, ownProps: any) => ({
+  ...ownProps
+});
+
+const mapDispatchToProps = {
+  addTodo
+};
+export default connect(mapStateToProps, mapDispatchToProps)(TodoInput);

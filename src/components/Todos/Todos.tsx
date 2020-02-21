@@ -37,15 +37,15 @@ class Todos extends React.Component<any, ITodosState> {
   componentDidMount() {
     this.getTodos();
   }
-  addTodo = async (params: any) => {
-    const { todos } = this.state;
-    try {
-      const response = await axios.post("todos", params);
-      this.setState({ todos: [...todos, response.data.resource] });
-    } catch (e) {
-      throw new Error(e);
-    }
-  };
+  // addTodo = async (params: any) => {
+  //   const { todos } = this.state;
+  //   try {
+  //     const response = await axios.post("todos", params);
+  //     this.setState({ todos: [...todos, response.data.resource] });
+  //   } catch (e) {
+  //     throw new Error(e);
+  //   }
+  // };
   updateTodo = async (id: number, params: any) => {
     try {
       const { todos } = this.state;
@@ -77,7 +77,7 @@ class Todos extends React.Component<any, ITodosState> {
   public render() {
     return (
       <div className="Todos" id="Todos">
-        <TodoInput addTodo={(params: any) => this.addTodo(params)}></TodoInput>
+        <TodoInput></TodoInput>
         <div className="todoList">
           {this.state.todos.map(todo => {
             return (
@@ -114,4 +114,4 @@ const mapDispatchToProps = {
   addTodo
 };
 
-export default connect(mapStateToProps)(Todos);
+export default connect(mapStateToProps, mapDispatchToProps)(Todos);
