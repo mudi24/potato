@@ -5,6 +5,7 @@ import CountDown from "./CountDown";
 
 interface ITomatoActionProps {
   startTomato: () => void;
+  updateTomato: (payload: any) => void;
   unfinishedTomato: any;
 }
 
@@ -34,6 +35,7 @@ class TomatoAction extends React.Component<
         `tomatoes/${this.props.unfinishedTomato.id}`,
         { description: this.state.description, ended_at: new Date() }
       );
+      this.props.updateTomato(response.data.resource);
       this.setState({ description: "" });
       console.log(response);
     } catch (e) {
@@ -56,6 +58,8 @@ class TomatoAction extends React.Component<
       const startedAt = Date.parse(this.props.unfinishedTomato.started_at);
       const duration = this.props.unfinishedTomato.duration;
       const timeNow = new Date().getTime();
+      const timer = duration - timeNow + startedAt;
+
       if (timeNow - startedAt > duration) {
         html = (
           <Input
@@ -66,7 +70,7 @@ class TomatoAction extends React.Component<
           ></Input>
         );
       } else if (timeNow - startedAt < duration) {
-        html = <CountDown />; //倒计时
+        html = <CountDown timer={timer} />; //倒计时
       }
     }
     return (
