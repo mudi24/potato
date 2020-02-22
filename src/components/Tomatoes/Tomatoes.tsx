@@ -9,9 +9,14 @@ import {
 } from "../../redux/actions/tomatoes";
 import axios from "../../config/axios";
 
-interface ITomatoesProps {}
+interface ITomatoesProps {
+  addTomato: (payload: any) => any;
+  updateTomato: (payload: any) => any;
+  initTomatoes: (payload: any[]) => any;
+  tomatoes: any[];
+}
 
-class Tomatoes extends React.Component<any> {
+class Tomatoes extends React.Component<ITomatoesProps> {
   constructor(props: any) {
     super(props);
   }
@@ -21,7 +26,7 @@ class Tomatoes extends React.Component<any> {
   }
   get unfinishedTomato() {
     return this.props.tomatoes.filter(
-      (t: any) => !t.description && !t.ender_at
+      (t: any) => !t.description && !t.ended_at
     )[0];
   }
 

@@ -1,5 +1,5 @@
 import React from "react";
-import { Button, Input } from "antd";
+import { Button, Input, Icon } from "antd";
 import axios from "../../config/axios";
 import CountDown from "./CountDown";
 
@@ -22,12 +22,17 @@ class TomatoAction extends React.Component<
     this.state = {
       description: ""
     };
+    console.log(this.props.unfinishedTomato);
   }
 
   onKeyUp = (e: any) => {
     if (e.keyCode === 13 && this.state.description !== "") {
       this.addDescription();
     }
+  };
+
+  onFinish = () => {
+    this.render();
   };
   addDescription = async () => {
     try {
@@ -42,9 +47,9 @@ class TomatoAction extends React.Component<
       throw new Error(e);
     }
   };
-  public render() {
+  createHtml = () => {
     let html = <div />;
-
+    console.log(this.props.unfinishedTomato);
     if (this.props.unfinishedTomato === undefined) {
       html = (
         <Button
@@ -58,24 +63,29 @@ class TomatoAction extends React.Component<
       const startedAt = Date.parse(this.props.unfinishedTomato.started_at);
       const duration = this.props.unfinishedTomato.duration;
       const timeNow = new Date().getTime();
-      const timer = duration - timeNow + startedAt;
-
       if (timeNow - startedAt > duration) {
         html = (
-          <Input
-            value={this.state.description}
-            placeholder="请输入你刚刚完成的任务"
-            onChange={e => this.setState({ description: e.target.value })}
-            onKeyUp={e => this.onKeyUp(e)}
-          ></Input>
+          <div>
+            <Input
+              value={this.state.description}
+              placeholder="请输入你刚刚完成的任务"
+              onChange={e => this.setState({ description: e.target.value })}
+              onKeyUp={e => this.onKeyUp(e)}
+            ></Input>
+            <Icon type="close-circle" />
+          </div>
         );
       } else if (timeNow - startedAt < duration) {
-        html = <CountDown timer={timer} />; //倒计时
+        const timer = duration - timeNow + startedAt;
+        html = <CountDown timer={timer} onFinish={this.onFinish} />; //倒计时
       }
     }
+    return html;
+  };
+  public render() {
     return (
       <div className="TomatoAction" id="TomatoAction">
-        {html}
+        {this.createHtml()}
       </div>
     );
   }
