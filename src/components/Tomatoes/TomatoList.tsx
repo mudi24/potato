@@ -1,5 +1,6 @@
 import React from "react";
 import { format } from "date-fns";
+import "./TomatoList.scss";
 
 interface ITomatoListProps {
   finishedTomatoes: any;
@@ -7,11 +8,11 @@ interface ITomatoListProps {
 
 const TomatoItem = function(props: any) {
   return (
-    <div>
-      <span>
-        {format(props.started_at, "H:mm")}-{format(props.ended_at, "H:mm")}
+    <div className="TomatoItem" id="TomatoItem">
+      <span className="timeRange">
+        {format(props.started_at, "H:mm")} - {format(props.ended_at, "H:mm")}
       </span>
-      <span>{props.description}</span>
+      <span className="description">{props.description}</span>
     </div>
   );
 };
@@ -28,10 +29,10 @@ class TomatoList extends React.Component<ITomatoListProps> {
     const list = this.dates.map(d => {
       const tomatoes = this.props.finishedTomatoes[d];
       return (
-        <div key={d}>
+        <div key={d} className="dailyTomatoes">
           <div className="title">
-            <span>{d}</span>
-            <span>完成了{tomatoes.length}个番茄</span>
+            <span className="dateTime">{format(d, "M月DD日")}</span>
+            <span className="finishedCount">完成了{tomatoes.length}个番茄</span>
           </div>
           {tomatoes.map((t: any) => (
             <TomatoItem key={t.id} {...t}></TomatoItem>
