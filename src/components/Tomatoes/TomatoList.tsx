@@ -18,9 +18,9 @@ const TomatoItem = function(props: any) {
 };
 
 class TomatoList extends React.Component<ITomatoListProps> {
-  constructor(props: any) {
-    super(props);
-  }
+  // constructor(props: any) {
+  //   super(props);
+  // }
   get dates() {
     const dates = Object.keys(this.props.finishedTomatoes);
     return dates.sort((a, b) => Date.parse(b) - Date.parse(a)).splice(0, 3);

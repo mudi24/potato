@@ -1,13 +1,17 @@
 import * as React from "react";
+import { connect } from "react-redux";
+import { initTodos } from "../../redux/actions/todos";
+import { initTomatoes } from "../../redux/actions/tomatoes";
 import { Button, Dropdown, Icon, Menu } from "antd";
 import axios from "../../config/axios";
 import history from "../../config/history";
 import "./Home.scss";
 import Todos from "../Todos/Todos";
 import Tomatoes from "../Tomatoes/Tomatoes";
+import Statistics from "../Statistics/Statistics";
 
-interface IRouter {
-  history: any;
+interface IIndexProps {
+  initTodos: any;
 }
 
 interface IIndexState {
@@ -29,23 +33,41 @@ const menu = (
   </Menu>
 );
 
-class Home extends React.Component<IRouter, IIndexState> {
+class Home extends React.Component<any, IIndexState> {
   constructor(props: any) {
     super(props);
     this.state = {
       user: {}
     };
   }
-  login = () => {
-    this.props.history.push("login");
-  };
 
+  getTodos = async () => {
+    try {
+      const response = await axios.get("todos");
+      const todos = response.data.resources.map((t: any) =>
+        Object.assign({}, t, { editing: false })
+      );
+      this.props.initTodos(todos);
+    } catch (e) {
+      throw new Error(e);
+    }
+  };
+  getTomatoes = async () => {
+    try {
+      const response = await axios.get("tomatoes");
+      this.props.initTomatoes(response.data.resources);
+    } catch (e) {
+      throw new Error(e);
+    }
+  };
   getMe = async () => {
     const response = await axios.get("me");
     this.setState({ user: response.data });
   };
   async componentDidMount() {
     await this.getMe();
+    await this.getTodos();
+    await this.getTomatoes();
   }
 
   render() {
@@ -64,9 +86,19 @@ class Home extends React.Component<IRouter, IIndexState> {
           <Tomatoes></Tomatoes>
           <Todos></Todos>
         </main>
+        <Statistics></Statistics>
       </div>
     );
   }
 }
 
-export default Home;
+const mapStateToProps = (state: any, ownProps: any) => ({
+  ...ownProps
+});
+
+const mapDispatchToProps = {
+  initTodos,
+  initTomatoes
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Home);
