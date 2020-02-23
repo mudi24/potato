@@ -7,9 +7,9 @@ import axios from "../../config/axios";
 import "./Todos.scss";
 
 class Todos extends React.Component<any> {
-  constructor(props: any) {
-    super(props);
-  }
+  // constructor(props: any) {
+  //   super(props);
+  // }
   get unDeletedTodos() {
     return this.props.todos.filter((t: any) => !t.deleted);
   }

@@ -70,7 +70,6 @@ class TomatoAction extends React.Component<
   };
   public render() {
     let html = <div />;
-    console.log(this.props.unfinishedTomato);
     if (this.props.unfinishedTomato === undefined) {
       html = (
         <Button
