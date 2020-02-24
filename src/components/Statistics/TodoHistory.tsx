@@ -1,17 +1,21 @@
 import * as React from "react";
 import { connect } from "react-redux";
+import { Tabs } from "antd";
 import _ from "lodash";
 import { format } from "date-fns";
+import "./TodoHistory.scss";
 
 interface ITodoHistoryProps {
   todos: any[];
 }
 
+const { TabPane } = Tabs;
+
 const TodoItem = (props: any) => {
   return (
-    <div>
-      <span>{props.updated_at}</span>
-      <span>{props.description}</span>
+    <div className="todoItem">
+      <span className="time">{format(props.updated_at, "HH:mm")}</span>
+      <span className="description">{props.description}</span>
     </div>
   );
 };
@@ -28,21 +32,56 @@ class TodoHistory extends React.Component<ITodoHistoryProps> {
       return format(todo.updated_at, "YYYY-MM-D");
     });
   }
-  get dates() {
+  get dailyDeletedTodos() {
+    return _.groupBy(this.deletedTodos, todo => {
+      return format(todo.updated_at, "YYYY-MM-D");
+    });
+  }
+  get finishedDates() {
     return Object.keys(this.dailyFinishedTodos).sort(
       (a, b) => Date.parse(b) - Date.parse(a)
     );
   }
+  get deletedDates() {
+    return Object.keys(this.dailyDeletedTodos).sort(
+      (a, b) => Date.parse(b) - Date.parse(a)
+    );
+  }
   public render() {
-    const TodoList = this.dates.map(date => {
+    const finishedTodoList = this.finishedDates.map(date => {
       return (
-        <div key={date}>
-          <div>
-            {date}
-            完成了{this.dailyFinishedTodos[date].length}个任务
+        <div key={date} className="dailyTodos">
+          <div className="summary">
+            <div className="date">
+              <span>{date}</span>
+              <span>周五</span>
+              <p className="finishedCount">
+                完成了{this.dailyFinishedTodos[date].length}个任务
+              </p>
+            </div>
           </div>
-          <div>
+          <div className="todoList">
             {this.dailyFinishedTodos[date].map(todo => (
+              <TodoItem key={todo.id} {...todo}></TodoItem>
+            ))}
+          </div>
+        </div>
+      );
+    });
+    const deletedTodoList = this.deletedDates.map(date => {
+      return (
+        <div key={date} className="dailyTodos">
+          <div className="summary">
+            <p className="date">
+              <span>{date}</span>
+              <span>周五</span>
+            </p>
+            <p className="finishedCount">
+              删除了{this.dailyDeletedTodos[date].length}个任务
+            </p>
+          </div>
+          <div className="todoList">
+            {this.dailyDeletedTodos[date].map(todo => (
               <TodoItem key={todo.id} {...todo}></TodoItem>
             ))}
           </div>
@@ -51,9 +90,18 @@ class TodoHistory extends React.Component<ITodoHistoryProps> {
     });
 
     return (
-      <div className="TodoHistory" id="TodoHistory">
-        {TodoList}
-      </div>
+      <Tabs defaultActiveKey="1">
+        <TabPane tab="已完成的任务" key="1">
+          <div className="TodoHistory" id="TodoHistory">
+            {finishedTodoList}
+          </div>
+        </TabPane>
+        <TabPane tab="已删除的任务" key="2">
+          <div className="TodoHistory" id="TodoHistory">
+            {deletedTodoList}
+          </div>
+        </TabPane>
+      </Tabs>
     );
   }
 }
