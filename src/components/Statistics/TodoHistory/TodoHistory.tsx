@@ -4,6 +4,7 @@ import { Tabs } from "antd";
 import _ from "lodash";
 import { format } from "date-fns";
 import "./TodoHistory.scss";
+import TodoHistoryTodoItem from "./TodoHistoryTodoItem";
 
 interface ITodoHistoryProps {
   todos: any[];
@@ -11,14 +12,14 @@ interface ITodoHistoryProps {
 
 const { TabPane } = Tabs;
 
-const TodoItem = (props: any) => {
-  return (
-    <div className="todoItem">
-      <span className="time">{format(props.updated_at, "HH:mm")}</span>
-      <span className="description">{props.description}</span>
-    </div>
-  );
-};
+// const TodoItem = (props: any) => {
+//   return (
+//     <div className="todoItem">
+//       <span className="time">{format(props.updated_at, "HH:mm")}</span>
+//       <span className="description">{props.description}</span>
+//     </div>
+//   );
+// };
 
 class TodoHistory extends React.Component<ITodoHistoryProps> {
   get finishedTodos() {
@@ -62,7 +63,11 @@ class TodoHistory extends React.Component<ITodoHistoryProps> {
           </div>
           <div className="todoList">
             {this.dailyFinishedTodos[date].map(todo => (
-              <TodoItem key={todo.id} {...todo}></TodoItem>
+              <TodoHistoryTodoItem
+                key={todo.id}
+                todo={todo}
+                itemType="finished"
+              ></TodoHistoryTodoItem>
             ))}
           </div>
         </div>
@@ -76,13 +81,14 @@ class TodoHistory extends React.Component<ITodoHistoryProps> {
               <span>{date}</span>
               <span>周五</span>
             </p>
-            <p className="finishedCount">
-              删除了{this.dailyDeletedTodos[date].length}个任务
-            </p>
           </div>
           <div className="todoList">
             {this.dailyDeletedTodos[date].map(todo => (
-              <TodoItem key={todo.id} {...todo}></TodoItem>
+              <TodoHistoryTodoItem
+                key={todo.id}
+                todo={todo}
+                itemType="deleted"
+              ></TodoHistoryTodoItem>
             ))}
           </div>
         </div>

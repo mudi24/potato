@@ -2,7 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import "./Statistics.scss";
 import Polygon from "./Polygon";
-import TodoHistory from "./TodoHistory";
+import TodoHistory from "./TodoHistory/TodoHistory";
 import _ from "lodash";
 import { format } from "date-fns";
 
