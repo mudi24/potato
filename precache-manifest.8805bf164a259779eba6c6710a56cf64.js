@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "c4b52004a7b589896f632e95bc40ce0c",
+    "revision": "e695bcefc7ba58b9673a2af8c7273a0c",
     "url": "/potato/index.html"
   },
   {
@@ -8,7 +8,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/potato/static/css/2.7eba4bce.chunk.css"
   },
   {
-    "revision": "0caca333e7daf689f869",
+    "revision": "18a3f0a0827795b40a09",
     "url": "/potato/static/css/main.7e33e1fc.chunk.css"
   },
   {
@@ -20,8 +20,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/potato/static/js/2.d2197b91.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "0caca333e7daf689f869",
-    "url": "/potato/static/js/main.4ceead88.chunk.js"
+    "revision": "18a3f0a0827795b40a09",
+    "url": "/potato/static/js/main.ed643960.chunk.js"
   },
   {
     "revision": "07e4ff6ef93703cf43f7",

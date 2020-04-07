@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/potato/precache-manifest.7904b1889f0fc808d1ec9a1456e5183a.js"
+  "/potato/precache-manifest.8805bf164a259779eba6c6710a56cf64.js"
 );
 
 self.addEventListener('message', (event) => {
