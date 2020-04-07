@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/potato/static/css/main.7e33e1fc.chunk.css",
-    "main.js": "/potato/static/js/main.20b871dd.chunk.js",
-    "main.js.map": "/potato/static/js/main.20b871dd.chunk.js.map",
+    "main.js": "/potato/static/js/main.53249213.chunk.js",
+    "main.js.map": "/potato/static/js/main.53249213.chunk.js.map",
     "runtime-main.js": "/potato/static/js/runtime-main.990e6979.js",
     "runtime-main.js.map": "/potato/static/js/runtime-main.990e6979.js.map",
     "static/css/2.7eba4bce.chunk.css": "/potato/static/css/2.7eba4bce.chunk.css",
     "static/js/2.d2197b91.chunk.js": "/potato/static/js/2.d2197b91.chunk.js",
     "static/js/2.d2197b91.chunk.js.map": "/potato/static/js/2.d2197b91.chunk.js.map",
     "index.html": "/potato/index.html",
-    "precache-manifest.cdc4af8b54b3e50196f247415242579a.js": "/potato/precache-manifest.cdc4af8b54b3e50196f247415242579a.js",
+    "precache-manifest.c783be674a46abfd9697beb7053f1af4.js": "/potato/precache-manifest.c783be674a46abfd9697beb7053f1af4.js",
     "service-worker.js": "/potato/service-worker.js",
     "static/css/2.7eba4bce.chunk.css.map": "/potato/static/css/2.7eba4bce.chunk.css.map",
     "static/css/main.7e33e1fc.chunk.css.map": "/potato/static/css/main.7e33e1fc.chunk.css.map",
@@ -20,6 +20,6 @@
     "static/css/2.7eba4bce.chunk.css",
     "static/js/2.d2197b91.chunk.js",
     "static/css/main.7e33e1fc.chunk.css",
-    "static/js/main.20b871dd.chunk.js"
+    "static/js/main.53249213.chunk.js"
   ]
 }
