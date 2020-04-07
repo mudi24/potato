@@ -1,0 +1,25 @@
+{
+  "files": {
+    "main.css": "/potato/static/css/main.7e33e1fc.chunk.css",
+    "main.js": "/potato/static/js/main.42e9623f.chunk.js",
+    "main.js.map": "/potato/static/js/main.42e9623f.chunk.js.map",
+    "runtime-main.js": "/potato/static/js/runtime-main.990e6979.js",
+    "runtime-main.js.map": "/potato/static/js/runtime-main.990e6979.js.map",
+    "static/css/2.074e34cc.chunk.css": "/potato/static/css/2.074e34cc.chunk.css",
+    "static/js/2.0e8911c9.chunk.js": "/potato/static/js/2.0e8911c9.chunk.js",
+    "static/js/2.0e8911c9.chunk.js.map": "/potato/static/js/2.0e8911c9.chunk.js.map",
+    "index.html": "/potato/index.html",
+    "precache-manifest.759f4a1fda8a4687802c87caee98370c.js": "/potato/precache-manifest.759f4a1fda8a4687802c87caee98370c.js",
+    "service-worker.js": "/potato/service-worker.js",
+    "static/css/2.074e34cc.chunk.css.map": "/potato/static/css/2.074e34cc.chunk.css.map",
+    "static/css/main.7e33e1fc.chunk.css.map": "/potato/static/css/main.7e33e1fc.chunk.css.map",
+    "static/js/2.0e8911c9.chunk.js.LICENSE.txt": "/potato/static/js/2.0e8911c9.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.990e6979.js",
+    "static/css/2.074e34cc.chunk.css",
+    "static/js/2.0e8911c9.chunk.js",
+    "static/css/main.7e33e1fc.chunk.css",
+    "static/js/main.42e9623f.chunk.js"
+  ]
+}
