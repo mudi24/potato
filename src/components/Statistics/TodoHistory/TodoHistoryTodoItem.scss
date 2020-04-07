@@ -1,10 +1,11 @@
 #TodoHistoryTodoItem {
-  padding: 8px;
+  padding:2px 8px 8px 20px;
   font-size: 14px;
   display: flex;
   justify-content: space-between;
 
   .text {
+    font-size: 14px;
     .time {
       color: #999;
       margin-right: 8px;

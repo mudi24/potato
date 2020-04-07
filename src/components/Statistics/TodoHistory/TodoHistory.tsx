@@ -57,7 +57,7 @@ class TodoHistory extends React.Component<ITodoHistoryProps> {
               <span>{date}</span>
               <span>周五</span>
               <p className="finishedCount">
-                完成了{this.dailyFinishedTodos[date].length}个任务
+                完成了 {this.dailyFinishedTodos[date].length} 个任务
               </p>
             </div>
           </div>
@@ -96,7 +96,7 @@ class TodoHistory extends React.Component<ITodoHistoryProps> {
     });
 
     return (
-      <Tabs defaultActiveKey="1">
+      <Tabs defaultActiveKey="1" className="TodoHistoryTabs">
         <TabPane tab="已完成的任务" key="1">
           <div className="TodoHistory" id="TodoHistory">
             {finishedTodoList}

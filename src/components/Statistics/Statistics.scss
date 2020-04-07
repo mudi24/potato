@@ -1,9 +1,28 @@
 #Statistics {
+  margin-bottom: 100px;
   ul {
     display: flex;
-
     li {
       flex: 1;
+      border: 1px solid #DDD;
+      box-shadow: 0 2px 0 rgba(225,225,225,.2);
+      width: 25%;
+      height: 100px;
+      display: flex;
+      flex-direction: column;
+      padding: 8px 0 10px 8px ;
+      span:first-child{
+        font-size: 14px;
+      }
+      span:nth-child(2){
+        margin-top: 4px;
+        font-size: 12px;
+        color: #999;
+      }
+      span:last-child{
+        font-size: 30px;
+        font-weight: 500;
+      }
     }
   }
 }

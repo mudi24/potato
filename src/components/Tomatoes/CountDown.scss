@@ -5,7 +5,14 @@
   border-radius: 4px;
   padding: 4px 0;
   overflow: hidden;
-
+  >img{
+    position: relative;
+    width: 18px;
+    height: 18px;
+    z-index: 1;
+    margin-right: 4px;
+    margin-bottom: 2px;
+  }
   >.restTime {
     position: relative;
     z-index: 1;

@@ -1,7 +1,8 @@
 #TomatoList {
   margin-top: 16px;
   border-top: 1px solid #ddd;
-
+  height: 36vh;
+  overflow: auto;
   .dailyTomatoes {
     padding-top: 16px;
 
@@ -10,7 +11,10 @@
       justify-content: space-between;
       align-items: center;
       margin-bottom: 4px;
-
+      img{
+        width: 20px;
+        height: 20px;
+      }
       .dateTime {
         color: #999;
         font-size: 16px;
@@ -19,6 +23,10 @@
       .finishedCount {
         color: #666;
         font-size: 12px;
+        >strong{
+          color: #ff3000;
+          font-size: 16px;
+        }
       }
     }
 

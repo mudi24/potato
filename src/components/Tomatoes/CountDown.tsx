@@ -44,6 +44,7 @@ class CountDown extends React.Component<ICountDownProps, ICountDownState> {
     const percent = 1 - this.state.countDown / this.props.duration;
     return (
       <div className="CountDown" id="CountDown">
+        <img src="/images/time.svg" alt=""/>
         <span className="restTime">{this.countDown}</span>
         <div className="progress" style={{ width: `${percent * 100}%` }}></div>
       </div>

@@ -25,7 +25,7 @@ const loginOut = () => {
 const menu = (
   <Menu>
     <Menu.Item key="1">
-      <Icon type="user"></Icon> 个人设置
+      {/* <Icon type="user"></Icon> 个人设置 */}
     </Menu.Item>
     <Menu.Item key="2">
       <Icon type="logout" onClick={loginOut}></Icon> 注销
@@ -70,14 +70,18 @@ class Home extends React.Component<any, IIndexState> {
     await this.getTomatoes();
   }
 
+
   render() {
     return (
       <div className="Home" id="Home">
         <header>
-          <span className="logo">LOGO</span>
+          <span className="logo">
+            <img src="/images/tomato.svg" alt=""/>
+            <h1>番茄Todo</h1>
+          </span>
           <Dropdown overlay={menu}>
             <Button>
-              <span>{this.state.user && this.state.user.account}</span>
+              <span>你好，{this.state.user && this.state.user.account}</span>
               <Icon type="down"></Icon>
             </Button>
           </Dropdown>

@@ -17,6 +17,20 @@ const TomatoItem = function(props: any) {
   );
 };
 
+const TomatoImg = function(props:any){
+  const array = []
+  for(let i=0; i<props.count; i++){
+    array.push(<img src="/images/tomato.svg"  key={i}  alt=""/>)
+  }
+  return (
+    <span>
+      {
+        array
+      }
+    </span>
+  )
+}
+
 class TomatoList extends React.Component<ITomatoListProps> {
   // constructor(props: any) {
   //   super(props);
@@ -32,7 +46,8 @@ class TomatoList extends React.Component<ITomatoListProps> {
         <div key={d} className="dailyTomatoes">
           <div className="title">
             <span className="dateTime">{format(d, "M月DD日")}</span>
-            <span className="finishedCount">完成了{tomatoes.length}个番茄</span>
+            <TomatoImg count={tomatoes.length}></TomatoImg>
+            <span className="finishedCount">完成了 <strong>{tomatoes.length}</strong> 个番茄</span>
           </div>
           {tomatoes.map((t: any) => (
             <TomatoItem key={t.id} {...t}></TomatoItem>

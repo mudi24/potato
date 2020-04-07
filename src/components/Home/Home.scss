@@ -9,6 +9,16 @@
     justify-content: space-between;
     padding: 16px 0;
     border-bottom: 1px solid #ddd;
+    margin-top: 30px;
+    >.logo{
+      display: flex;
+      line-height: 2em;
+      >img{
+        width: 36px;
+        height: 36px;
+        margin-right: 4px;
+      }
+    }
   }
 
   >main {
