@@ -12,5 +12,6 @@ if (ENV === 'development') {
 const history = createBrowserHistory({
   basename: publicUrl
 })
+// const history = createBrowserHistory()
 
 export default history

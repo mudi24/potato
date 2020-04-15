@@ -1,6 +1,7 @@
 {
   "name": "tomato",
   "version": "0.1.0",
+  "homepage": "https://mambaneverout.github.io/potato",
   "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "^4.2.4",
@@ -15,6 +16,7 @@
     "customize-cra": "^0.9.1",
     "dart-sass": "^1.25.0",
     "date-fns": "^1.30.1",
+    "gh-pages": "^2.2.0",
     "lodash": "^4.17.15",
     "react": "^16.12.0",
     "react-app-rewired": "^2.1.5",
@@ -26,6 +28,8 @@
     "typescript": "~3.7.2"
   },
   "scripts": {
+    "predeploy": "yarn build",
+    "deploy": "gh-pages -d build",
     "start": "react-app-rewired start",
     "build": "react-app-rewired build",
     "test": "react-app-rewired test",

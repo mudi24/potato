@@ -20,7 +20,7 @@ const TomatoItem = function(props: any) {
 const TomatoImg = function(props:any){
   const array = []
   for(let i=0; i<props.count; i++){
-    array.push(<img src="/images/tomato.svg"  key={i}  alt=""/>)
+    array.push(<img src="/potato/images/tomato.svg"  key={i}  alt=""/>)
   }
   return (
     <span>
